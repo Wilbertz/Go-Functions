@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	answer, err := simplemath.Divide(6, 3)
+	answer, err := simplemath.Divide(6, 2)
 	if err != nil {
 		fmt.Printf("An errors occurred %s\n", err.Error())
 	} else {
