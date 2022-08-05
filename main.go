@@ -3,8 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	a := func(name string) {
-		fmt.Printf("my first %s function", name)
+	a := func(name string) string {
+		fmt.Printf("my first %s function\n", name)
+		return name
 	}
-	a("function 1")
+	value := a("function 1")
+	println(value)
 }
