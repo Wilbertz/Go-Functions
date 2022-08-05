@@ -1,5 +1,7 @@
 package main
 
+import "Go-Functions/simplemath"
+
 func main() {
 	addExpr := mathExpression()
 
@@ -7,7 +9,5 @@ func main() {
 }
 
 func mathExpression() func(float64, float64) float64 {
-	return func(f1 float64, f2 float64) float64 {
-		return f1 + f2
-	}
+	return simplemath.Add
 }
