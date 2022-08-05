@@ -1,12 +1,13 @@
 package main
 
-import "fmt"
-
 func main() {
-	a := func(name string) string {
-		fmt.Printf("my first %s function\n", name)
-		return name
+	addExpr := mathExpression()
+
+	println(addExpr(2, 3))
+}
+
+func mathExpression() func(float64, float64) float64 {
+	return func(f1 float64, f2 float64) float64 {
+		return f1 + f2
 	}
-	value := a("function 1")
-	println(value)
 }
