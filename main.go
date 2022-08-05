@@ -1,11 +1,10 @@
 package main
 
-import "Go-Functions/simplemath"
+import "fmt"
 
 func main() {
-	sv := simplemath.NewSemanticVersion(1, 2, 3)
-	sv.IncrementMajor()
-	sv.IncrementMinor()
-	sv.IncrementPatch()
-	println(sv.String())
+	a := func(name string) {
+		fmt.Printf("my first %s function", name)
+	}
+	a("function 1")
 }
