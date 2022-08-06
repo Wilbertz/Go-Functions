@@ -1,6 +1,9 @@
 package main
 
-import "Go-Functions/simplemath"
+import (
+	"Go-Functions/simplemath"
+	"fmt"
+)
 
 type MathExpr = string
 
@@ -11,9 +14,7 @@ const (
 )
 
 func main() {
-	addExpr := mathExpression(MultiplyExpr)
-
-	println(addExpr(2, 3))
+	fmt.Printf("%f", double(2, 3, mathExpression(AddExpr)))
 }
 
 func mathExpression(expr MathExpr) func(float64, float64) float64 {
@@ -29,4 +30,8 @@ func mathExpression(expr MathExpr) func(float64, float64) float64 {
 			return 0
 		}
 	}
+}
+
+func double(f1, f2 float64, mathExpr func(float64, float64) float64) float64 {
+	return mathExpr(f1, f2) * 2
 }
