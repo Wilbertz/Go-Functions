@@ -14,16 +14,10 @@ const (
 )
 
 func main() {
-	var funcs []func() int64
-	for i := 0; i < 10; i++ {
-		cleanI := i
-		funcs = append(funcs, func() int64 {
-			return int64(math.Pow(float64(cleanI), 2))
-		})
-	}
-	for _, f := range funcs {
-		println(f())
-	}
+}
+
+type BadReader struct {
+	err error
 }
 
 func powerOfTwo() func() int64 {
