@@ -14,13 +14,16 @@ const (
 )
 
 func main() {
-	p2 := powerOfTwo()
-
-	value := p2()
-	println(value)
-
-	value = p2()
-	println(value)
+	var funcs []func() int64
+	for i := 0; i < 10; i++ {
+		cleanI := i
+		funcs = append(funcs, func() int64 {
+			return int64(math.Pow(float64(cleanI), 2))
+		})
+	}
+	for _, f := range funcs {
+		println(f())
+	}
 }
 
 func powerOfTwo() func() int64 {
