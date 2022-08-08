@@ -20,6 +20,10 @@ type BadReader struct {
 	err error
 }
 
+func (br BadReader) Read(p []byte) (n int, err error) {
+	return -1, br.err
+}
+
 func powerOfTwo() func() int64 {
 	x := 1.0
 	return func() int64 {
