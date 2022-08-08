@@ -41,6 +41,19 @@ func (br BadReader) Read(p []byte) (n int, err error) {
 	return -1, br.err
 }
 
+type SimpleReader struct {
+	count int
+}
+
+func (br SimpleReader) Read(p []byte) (n int, err error) {
+	println(br.count)
+	if br.count > 3 {
+		return 0, io.EOF
+	}
+	br.count += 1
+	return br.count, nil
+}
+
 func powerOfTwo() func() int64 {
 	x := 1.0
 	return func() int64 {
