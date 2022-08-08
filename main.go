@@ -17,10 +17,10 @@ const (
 )
 
 func main() {
-	ReadSomething()
+	ReadSomethingBad()
 }
 
-func ReadSomething() error {
+func ReadSomethingBad() error {
 	var r io.Reader = BadReader{errors.New("my nonsense reader")}
 
 	value, err := r.Read([]byte("test something"))
