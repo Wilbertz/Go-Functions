@@ -2,6 +2,9 @@ package main
 
 import (
 	"Go-Functions/simplemath"
+	"errors"
+	"fmt"
+	"io"
 	"math"
 )
 
@@ -14,6 +17,20 @@ const (
 )
 
 func main() {
+	ReadSomething()
+}
+
+func ReadSomething() error {
+	var r io.Reader = BadReader{errors.New("my nonsense reader")}
+
+	value, err := r.Read([]byte("test something"))
+
+	if err != nil {
+		fmt.Printf("an error occurred %s", err)
+		return err
+	}
+	println(value)
+	return nil
 }
 
 type BadReader struct {
