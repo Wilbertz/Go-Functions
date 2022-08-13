@@ -22,9 +22,15 @@ func main() {
 	}
 }
 
-func ReadFullFile() error {
+func ReadFullFile() (err error) {
 	var r io.ReadCloser = &SimpleReader{}
-	defer func() { r.Close() }()
+	defer func() {
+		r.Close()
+		if p := recover(); p != nil {
+			println(p)
+			err = errors.New("a panic occurred but it is ok")
+		}
+	}()
 	for {
 		value, err := r.Read([]byte("text that does nothing"))
 		if err == io.EOF {
