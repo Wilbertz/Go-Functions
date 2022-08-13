@@ -32,12 +32,13 @@ func ReadFullFile() (err error) {
 		}
 	}()
 	for {
-		value, err := r.Read([]byte("text that does nothing"))
-		if err == io.EOF {
+		value, readerErr := r.Read([]byte("text that does nothing"))
+		if readerErr == io.EOF {
 			println("finished reading file, breaking out of loop")
 			break
-		} else if err != nil {
-			return err
+		} else if readerErr != nil {
+			err = readerErr
+			return
 		}
 		println(value)
 	}
