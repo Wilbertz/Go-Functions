@@ -26,7 +26,7 @@ func ReadFullFile() (err error) {
 	var r io.ReadCloser = &SimpleReader{}
 	defer func() {
 		r.Close()
-		if p := recover(); p != nil {
+		if p := recover(); p == errCatastrophicReader {
 			println(p)
 			err = errors.New("a panic occurred but it is ok")
 		}
@@ -69,9 +69,11 @@ type SimpleReader struct {
 	count int
 }
 
+var errCatastrophicReader = errors.New("something catastrophic occurred in the reader")
+
 func (br *SimpleReader) Read(p []byte) (n int, err error) {
 	if br.count == 2 {
-		panic("something catastrophic occurred in the reader")
+		panic(errCatastrophicReader)
 	}
 	if br.count > 3 {
 		return 0, io.EOF
